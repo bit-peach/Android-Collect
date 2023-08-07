@@ -1,0 +1,48 @@
+package com.rider.view;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.rider.R;
+
+public class view_order_history_listtitle extends BaseLayout {
+
+    public view_order_history_listtitle(Context context) {
+        super(context);
+    }
+
+    public view_order_history_listtitle(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        Init(context, attrs);
+    }
+
+    public view_order_history_listtitle(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        Init(context, attrs);
+    }
+
+    public view_order_history_listtitle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        Init(context, attrs);
+    }
+
+    private void Init(Context context,AttributeSet attrs) {
+        _context = context;
+
+        String infService = _context.LAYOUT_INFLATER_SERVICE;
+
+        TypedArray type = context.obtainStyledAttributes(attrs, R.styleable.Layout_user_select_bar);
+
+        LayoutInflater li = (LayoutInflater) _context.getSystemService(infService);
+        _activity = getActivity(context);
+        final View v = li.inflate(R.layout.view_order_history_listtitle, this, false);
+        _view =v;
+
+        addView(v);
+
+    }
+
+}
