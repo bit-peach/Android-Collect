@@ -1,0 +1,24 @@
+getHeight(_binding.txtPage1, new ILayoutCallbackToAct() {
+    @Override
+    public void onLayoutInfo(int width, int height) {
+        Log.d("line size", "width:"+width+", height:"+height);
+        CommonUtil.with().setWidth(_binding.selectLine1, width);
+    }
+});
+
+public void getHeight(View rootView,ILayoutCallbackToAct iLayoutCallbackToAct){
+    _iLayoutCallbackToAct = iLayoutCallbackToAct;
+    _globalLayoutListener= new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            int width = rootView.getWidth();
+            _height = rootView.getHeight();
+            Log.d(TAG, "width: "+width+"\t height:"+_height);
+            
+            if(_iLayoutCallbackToAct!= null)
+                _iLayoutCallbackToAct.onLayoutInfo(width,_height);
+            removeOnGlobalLayoutListener(rootView.getViewTreeObserver(), _globalLayoutListener);
+        }
+    };
+    rootView.getViewTreeObserver().addOnGlobalLayoutListener(_globalLayoutListener);
+}
